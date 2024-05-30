@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="introduccion.html">Introducción</a>
+            <a href="preguntas.html">Preguntas</a>
+            <a href="resultado.html">Resultado</a>
+        </div>
+        <h2>Preguntas</h2>
+
+        <div class="question">
+            <p>Pregunta 1: ¿Cuál es la fórmula de la distancia horizontal (Alcance) en el tiro parabólico?</p>
+            <figure>
+                <center><img src="1.png" alt="Tiro Parabólico"></center>
+                <figcaption>Figura 1. Tomada de: [https://fisymat.com/fisica/tiro-parabolico-o-tiro-oblicuo-ejercicios-resueltos-paso-a-paso/]</figcaption>
+            </figure>
+            <select id="pregunta1">
+                <option value="">Seleccione una opción</option>
+                <option value="d = v0_{x} * t">d = v0_{x} * t</option>
+                <option value="d = v0_{x} * t + 0.5 * a_{x} * t^2">d = v0_{x} * t + 0.5 * a_{x} * t^2</option>
+                <option value="d = v0_{x} * t * cos(θ)">d = v_{x} * t * cos(θ)</option>
+                <option value="d = v0^2_{x} * sin(2θ)/g">d = v0^2_{x} * sin(2θ)/g</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <p>Pregunta 2: ¿Cuáles son los primeros 10 dígitos del número pi (π)?</p>
+            <figure>
+                <center><img src="2.png" alt="Número pi"></center>
+                <figcaption>Figura 2. Tomada de: [https://www.smartick.es/blog/otros-contenidos/curiosidades/el-numero-pi/]</figcaption>
+            </figure>
+            <select id="pregunta2">
+                <option value="">Seleccione una opción</option>
+                <option value="3,141592653">3,141592653</option>
+                <option value="3,141596253">3,141596253</option>
+                <option value="3,141592654">3,141592654</option>
+                <option value="3,141596254">3,141596254</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <p>Pregunta 3: ¿Cuál de las siguientes no pertenece a las 7 maravillas del mundo moderno?</p>
+            <figure>
+                <center><img src="3.jpg" alt="Maravillas del mundo moderno"></center>
+                <figcaption>Figura 3. Tomada de: [https://www.serfadu.com/2022/07/07/las-siete-maravillas-del-mundo-moderno/]</figcaption>
+            </figure>
+            <select id="pregunta3">
+                <option value="">Seleccione una opción</option>
+                <option value="Petra">Petra</option>
+                <option value="Chichén Itzá">Chichén Itzá</option>
+                <option value="El Templo de Artemisa">El Templo de Artemisa</option>
+                <option value="El Taj Mahal">El Taj Mahal</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <p>Pregunta 4: ¿Cuándo se creó en Colombia la Constitución de 1991?</p>
+            <figure>
+                <center><img src="4.png" alt="Constitución"></center>
+                <figcaption>Figura 4. Tomada de: [https://www.uniminutoradio.com.co/como-nacio-la-constitucion-politica-del-91/]</figcaption>
+            </figure>
+            <select id="pregunta4">
+                <option value="">Seleccione una opción</option>
+                <option value="9 de mayo de 1991">9 de mayo de 1991/t</option>
+                <option value="20 de julio de 1991">20 de julio de 1991</option>
+                <option value="7 de agosto de 1991">7 de agosto de 1991</option>
+                <option value="4 de julio de 1991">4 de julio de 1991</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <p>Pregunta 5: ¿Cuál es el nombre de este jugador de fútbol?</p>
+            <figure>
+                <center><img src="5.png" alt="Tiempo de vuelo en Tiro Parabólico"></center>
+                <figcaption>Figura 5. Tomada de: [https://www.marca.com/futbol/futbol-internacional/2023/09/08/64fae08a22601d99518b45b5.html]</figcaption>
+            </figure>
+            <select id="pregunta5">
+                <option value="">Seleccione una opción</option>
+                <option value="Vinícius Júnior">Vinícius Júnior</option>
+                <option value="Mario Balotelli">Mario Balotelli</option>
+                <option value="Adebayo Akinfenwa">Adebayo Akinfenwa</option>
+                <option value="Adama Traoré">Adama Traoré</option>
+            </select>
+        </div>
+
+        <button class="button" onclick="evaluar()">Evaluar</button>
+    </div>
+
+    <script>
+        function evaluar() {
+            const respuestasCorrectas = [
+                'd = v0_{x} * t * cos(θ)',
+                '3,141592653',
+                'El Templo de Artemisa',
+                '4 de julio de 1991',
+                'Mario Balotelli'
+            ];
+
+            const respuestasUsuario = [
+                document.getElementById('pregunta1').value,
+                document.getElementById('pregunta2').value,
+                document.getElementById('pregunta3').value,
+                document.getElementById('pregunta4').value,
+                document.getElementById('pregunta5').value
+            ];
+
+            const resultado = respuestasUsuario.map((respuesta, index) => ({
+                respuestaUsuario: respuesta,
+                respuestaCorrecta: respuestasCorrectas[index],
+                correcta: respuesta === respuestasCorrectas[index]
+            }));
+
+            localStorage.setItem('resultado', JSON.stringify(resultado));
+            window.location.href = 'resultado.html';
+        }
+    </script>
+</body>
+</html>

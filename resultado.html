@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">Inicio</a>
+            <a href="introduccion.html">Introducción</a>
+            <a href="preguntas.html">Preguntas</a>
+            <a href="resultado.html">Resultado</a>
+        </div>
+        <h2>Resultado</h2>
+        <div id="resultado"></div>
+        <button class="button" onclick="window.location.href='index.html'">Volver al inicio</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const resultado = JSON.parse(localStorage.getItem('resultado'));
+            const resultadoDiv = document.getElementById('resultado');
+            
+            if (!resultado) {
+                resultadoDiv.innerText = 'No se han evaluado las respuestas.';
+                return;
+            }
+
+            resultado.forEach((pregunta, index) => {
+                const div = document.createElement('div');
+                div.classList.add('result');
+                if (pregunta.correcta) {
+                    div.classList.add('correct');
+                    div.innerText = `Pregunta ${index + 1}: Correcto`;
+                } else {
+                    div.classList.add('incorrect');
+                    div.innerText = `Pregunta ${index + 1}: Incorrecto. La respuesta correcta es "${pregunta.respuestaCorrecta}".`;
+                }
+                resultadoDiv.appendChild(div);
+            });
+
+            localStorage.removeItem('resultado');
+        }
+    </script>
+</body>
+</html>
